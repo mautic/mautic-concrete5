@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<schema version="0.3">
+	<table name="btMautic">
+		<field name="bID" type="I">
+			<key />
+			<unsigned />
+		</field>
+		<field name="mautic_base_url" type="C" size="255"></field>
+	</table>
+</schema>
