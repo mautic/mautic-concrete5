@@ -1,6 +1,6 @@
 <?php
 
-namespace Concrete\Package\Mautic\Block\Tracker;
+namespace Concrete\Package\Mautic\Block\Mautictracker;
 use \Concrete\Core\Block\BlockController;
 use UserInfo;
 use Loader;
@@ -11,7 +11,7 @@ defined('C5_EXECUTE') or die("Access Denied.");
 
 class Controller extends BlockController
 {
-    protected $btTable = 'btMautic';
+    protected $btTable = 'mauticConfig';
     protected $btInterfaceWidth = "600";
     protected $btInterfaceHeight = "400";
     
@@ -22,7 +22,7 @@ class Controller extends BlockController
     }
     
     public function getBlockTypeName() {
-        return t("Tracker");
+        return t("Mautictracker");
     }
     
     public function view(){ 

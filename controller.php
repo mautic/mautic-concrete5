@@ -10,19 +10,20 @@ defined('C5_EXECUTE') or die(_("Access Denied."));
 class Controller extends Package {
     protected $pkgHandle = "mautic";
     protected $appVersionRequired = "5.5";
-    protected $pkgVersion = "0.1";
+    protected $pkgVersion = "0.2";
     
     public function getPackageName() {
         return t('Mautic');
     }
 
     public function getPackageDescription() {
-        return t('Mautic Tracker');
+        return t('Mautic Integrationd Plugin');
     }
 
 	public function install() {
 		$pkg = parent::install();
 		// install list block
-		BlockType::installBlockTypeFromPackage('tracker', $pkg);
+		BlockType::installBlockTypeFromPackage('mautictracker', $pkg);
+        BlockType::installBlockTypeFromPackage('mauticform', $pkg);
 	}
 }
