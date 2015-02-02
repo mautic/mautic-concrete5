@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<schema version="0.3">
+	<table name="mauticForms">
+		<field name="bID" type="I">
+			<key />
+			<unsigned />
+		</field>
+		<field name="mautic_form_id" type="I"></field>
+        <field name="mautic_base_url" type="C" size="255"></field>
+	</table>
+</schema>
