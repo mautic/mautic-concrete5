@@ -23,7 +23,7 @@ class Controller extends BlockController
     }
     
     public function getBlockTypeName() {
-        return t("Mauticform");
+        return t("Mautic Form");
     }
     
     public function view() { 

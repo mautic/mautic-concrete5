@@ -22,7 +22,7 @@ class Controller extends BlockController
     }
     
     public function getBlockTypeName() {
-        return t("Mautictracker");
+        return t("Mautic Tracker");
     }
     
     public function view() {
