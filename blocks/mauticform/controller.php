@@ -26,7 +26,7 @@ class Controller extends BlockController
         return t("Mauticform");
     }
     
-    public function view(){ 
+    public function view() { 
         $this->set('mautic_base_url', $this->mautic_base_url);
         $this->set('mautic_form_id', $this->mautic_form_id);
     } 

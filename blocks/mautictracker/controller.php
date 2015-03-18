@@ -25,8 +25,20 @@ class Controller extends BlockController
         return t("Mautictracker");
     }
     
-    public function view(){ 
-        $this->set('mautic_base_url', $this->mautic_base_url);
+    public function view() {
+        $page = Page::getCurrentPage();
+        $nh = Loader::helper('navigation');
+        $currentUrl = $nh->getCollectionURL($page);
+
+        // Get additional data to send
+        $attrs = array();
+        $attrs['title']     = $page->getCollectionName();
+        $attrs['referrer']  = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $currentUrl;
+        $attrs['url']       = $currentUrl . (isset($_SERVER['QUERY_STRING']) ? ('?' . $_SERVER['QUERY_STRING']) : '');
+
+        $encodedAttrs       = urlencode(base64_encode(serialize($attrs)));
+
+        $this->set('mautic_base_url', $this->mautic_base_url . '?d=' . $encodedAttrs);
     } 
     
     public function save($args) {
