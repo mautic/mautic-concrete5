@@ -23,16 +23,20 @@ class Controller extends BlockController
     }
     
     public function getBlockTypeName() {
-        return t("Mauticform");
+        return t("Mautic Form");
     }
     
-    public function view(){ 
+    public function view() { 
         $this->set('mautic_base_url', $this->mautic_base_url);
         $this->set('mautic_form_id', $this->mautic_form_id);
     } 
     
     public function save($args) { 
         $args['mautic_form_id'] = isset($args['mautic_form_id']) ? $args['mautic_form_id'] : '';
+
+        // Sanitize URL
+        $args['mautic_base_url'] = trim($args['mautic_base_url'], ' \t\n\r\0\x0B/');
+
         parent::save($args);
     }
 }

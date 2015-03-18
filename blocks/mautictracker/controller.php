@@ -22,15 +22,31 @@ class Controller extends BlockController
     }
     
     public function getBlockTypeName() {
-        return t("Mautictracker");
+        return t("Mautic Tracker");
     }
     
-    public function view(){ 
-        $this->set('mautic_base_url', $this->mautic_base_url);
+    public function view() {
+        $page = Page::getCurrentPage();
+        $nh = Loader::helper('navigation');
+        $currentUrl = $nh->getCollectionURL($page);
+
+        // Get additional data to send
+        $attrs = array();
+        $attrs['title']     = $page->getCollectionName();
+        $attrs['referrer']  = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $currentUrl;
+        $attrs['url']       = $currentUrl . (isset($_SERVER['QUERY_STRING']) ? ('?' . $_SERVER['QUERY_STRING']) : '');
+
+        $encodedAttrs       = urlencode(base64_encode(serialize($attrs)));
+
+        $this->set('mautic_base_url', $this->mautic_base_url . '?d=' . $encodedAttrs);
     } 
     
-    public function save($args) { 
+    public function save($args) {
         $args['mautic_base_url'] = isset($args['mautic_base_url']) ? $args['mautic_base_url'] : '';
+
+        // Sanitize URL
+        $args['mautic_base_url'] = trim($args['mautic_base_url'], ' \t\n\r\0\x0B/');
+
         parent::save($args);
     }
 }
