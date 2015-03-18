@@ -29,8 +29,12 @@ class Controller extends BlockController
         $this->set('mautic_base_url', $this->mautic_base_url);
     } 
     
-    public function save($args) { 
+    public function save($args) {
         $args['mautic_base_url'] = isset($args['mautic_base_url']) ? $args['mautic_base_url'] : '';
+
+        // Sanitize URL
+        $args['mautic_base_url'] = trim($args['mautic_base_url'], ' \t\n\r\0\x0B/');
+
         parent::save($args);
     }
 }
