@@ -8,6 +8,7 @@ use Config;
 use Page;
 use View;
 use Request;
+use URL;
 defined('C5_EXECUTE') or die("Access Denied.");
 
 class Controller extends BlockController
@@ -28,9 +29,8 @@ class Controller extends BlockController
     
     public function view() {
         $page = Page::getCurrentPage();
-        $nh = Loader::helper('navigation');
-        $currentUrl = $nh->getCollectionURL($page);
         $request = Request::getInstance();
+        $currentUrl = (string) URL::to($request->getPathInfo());
 
         // Get additional data to send
         $attrs = array();
