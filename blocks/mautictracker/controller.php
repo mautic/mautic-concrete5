@@ -36,6 +36,7 @@ class Controller extends BlockController
         // Get additional data to send
         $attrs = array();
         $attrs['title']     = $page->getCollectionName();
+        $attrs['language']  = Localization::activeLocale();
         $attrs['referrer']  = ($request->headers->get('referer')) ? $request->headers->get('referer') : $currentUrl;
         $attrs['url']       = ($request->getQueryString()) ? $currentUrl . '?' . $request->getQueryString() : $currentUrl;
 
