@@ -9,6 +9,7 @@ use Page;
 use View;
 use Request;
 use URL;
+use Localization;
 defined('C5_EXECUTE') or die("Access Denied.");
 
 class Controller extends BlockController
