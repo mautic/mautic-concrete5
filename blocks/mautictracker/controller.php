@@ -17,6 +17,10 @@ class Controller extends BlockController
     protected $btTable = 'mauticConfig';
     protected $btInterfaceWidth = "600";
     protected $btInterfaceHeight = "400";
+    protected $btCacheBlockRecord = true;
+    protected $btCacheBlockOutput = true;
+    protected $btCacheBlockOutputOnPost = true;
+    protected $btCacheBlockOutputForRegisteredUsers = false;
     
     public $mautic_base_url = "";
     
