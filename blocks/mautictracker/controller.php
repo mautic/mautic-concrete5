@@ -7,6 +7,7 @@ use Loader;
 use Config;
 use Page;
 use View;
+use Request;
 defined('C5_EXECUTE') or die("Access Denied.");
 
 class Controller extends BlockController
@@ -29,12 +30,13 @@ class Controller extends BlockController
         $page = Page::getCurrentPage();
         $nh = Loader::helper('navigation');
         $currentUrl = $nh->getCollectionURL($page);
+        $request = Request::getInstance();
 
         // Get additional data to send
         $attrs = array();
         $attrs['title']     = $page->getCollectionName();
-        $attrs['referrer']  = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $currentUrl;
-        $attrs['url']       = $currentUrl . (isset($_SERVER['QUERY_STRING']) ? ('?' . $_SERVER['QUERY_STRING']) : '');
+        $attrs['referrer']  = ($request->headers->get('referer')) ? $request->headers->get('referer') : $currentUrl;
+        $attrs['url']       = ($request->getQueryString()) ? $currentUrl . '?' . $request->getQueryString() : $currentUrl;
 
         $encodedAttrs       = urlencode(base64_encode(serialize($attrs)));
 
