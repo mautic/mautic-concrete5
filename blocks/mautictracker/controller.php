@@ -38,7 +38,8 @@ class Controller extends BlockController
 
         $encodedAttrs       = urlencode(base64_encode(serialize($attrs)));
 
-        $this->set('mautic_base_url', $this->mautic_base_url . '?d=' . $encodedAttrs);
+        $this->set('mautic_base_url', $this->mautic_base_url);
+        $this->set('encodedAttrs',    '?d=' . $encodedAttrs);
     } 
     
     public function save($args) {
