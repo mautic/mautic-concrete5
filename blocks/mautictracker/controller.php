@@ -1,12 +1,13 @@
 <?php
 
 namespace Concrete\Package\Mautic\Block\Mautictracker;
-use \Concrete\Core\Block\BlockController;
-use UserInfo;
-use Loader;
-use Config;
+
+use Concrete\Core\Block\BlockController;
 use Page;
-use View;
+use Request;
+use URL;
+use Localization;
+
 defined('C5_EXECUTE') or die("Access Denied.");
 
 class Controller extends BlockController
@@ -14,34 +15,44 @@ class Controller extends BlockController
     protected $btTable = 'mauticConfig';
     protected $btInterfaceWidth = "600";
     protected $btInterfaceHeight = "400";
-    
+    protected $btCacheBlockRecord = true;
+    protected $btCacheBlockOutput = true;
+    protected $btCacheBlockOutputOnPost = true;
+    protected $btCacheBlockOutputForRegisteredUsers = false;
+
     public $mautic_base_url = "";
-    
-    public function getBlockTypeDescription() {
+
+    public function getBlockTypeDescription()
+    {
         return t("Add Mautic Tracker.");
     }
-    
-    public function getBlockTypeName() {
+
+    public function getBlockTypeName()
+    {
         return t("Mautic Tracker");
     }
-    
-    public function view() {
+
+    public function view()
+    {
         $page = Page::getCurrentPage();
-        $nh = Loader::helper('navigation');
-        $currentUrl = $nh->getCollectionURL($page);
+        $request = Request::getInstance();
+        $currentUrl = (string) URL::to($request->getPathInfo());
 
         // Get additional data to send
         $attrs = array();
-        $attrs['title']     = $page->getCollectionName();
-        $attrs['referrer']  = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : $currentUrl;
-        $attrs['url']       = $currentUrl . (isset($_SERVER['QUERY_STRING']) ? ('?' . $_SERVER['QUERY_STRING']) : '');
+        $attrs['title'] = $page->getCollectionName();
+        $attrs['language'] = Localization::activeLocale();
+        $attrs['referrer'] = ($request->headers->get('referer')) ? $request->headers->get('referer') : $currentUrl;
+        $attrs['url'] = ($request->getQueryString()) ? $currentUrl . '?' . $request->getQueryString() : $currentUrl;
 
-        $encodedAttrs       = urlencode(base64_encode(serialize($attrs)));
+        $encodedAttrs = urlencode(base64_encode(serialize($attrs)));
 
-        $this->set('mautic_base_url', $this->mautic_base_url . '?d=' . $encodedAttrs);
-    } 
-    
-    public function save($args) {
+        $this->set('mautic_base_url', $this->mautic_base_url);
+        $this->set('encodedAttrs',    '?d=' . $encodedAttrs);
+    }
+
+    public function save($args)
+    {
         $args['mautic_base_url'] = isset($args['mautic_base_url']) ? $args['mautic_base_url'] : '';
 
         // Sanitize URL
