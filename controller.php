@@ -20,10 +20,10 @@ class Controller extends Package {
         return t('Mautic Integrationd Plugin');
     }
 
-	public function install() {
-		$pkg = parent::install();
-		// install list block
-		BlockType::installBlockTypeFromPackage('mautictracker', $pkg);
+    public function install() {
+        $pkg = parent::install();
+        // install list block
+        BlockType::installBlockTypeFromPackage('mautictracker', $pkg);
         BlockType::installBlockTypeFromPackage('mauticform', $pkg);
-	}
+    }
 }
