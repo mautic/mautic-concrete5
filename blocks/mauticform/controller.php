@@ -35,7 +35,7 @@ class Controller extends BlockController
         $args['mautic_form_id'] = isset($args['mautic_form_id']) ? $args['mautic_form_id'] : '';
 
         // Sanitize URL
-        $args['mautic_base_url'] = trim($args['mautic_base_url'], ' \t\n\r\0\x0B/');
+        $args['mautic_base_url'] = trim($args['mautic_base_url'], " \t\n\r\0\x0B/");
 
         parent::save($args);
     }
