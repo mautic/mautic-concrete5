@@ -56,7 +56,7 @@ class Controller extends BlockController
         $args['mautic_base_url'] = isset($args['mautic_base_url']) ? $args['mautic_base_url'] : '';
 
         // Sanitize URL
-        $args['mautic_base_url'] = trim($args['mautic_base_url'], ' \t\n\r\0\x0B/');
+        $args['mautic_base_url'] = trim($args['mautic_base_url'], " \t\n\r\0\x0B/");
 
         parent::save($args);
     }
