@@ -17,7 +17,7 @@ class Controller extends Package {
     }
 
     public function getPackageDescription() {
-        return t('Mautic Integrationd Plugin');
+        return t('Mautic Integration Plugin');
     }
 
 	public function install() {
@@ -25,5 +25,6 @@ class Controller extends Package {
 		// install list block
 		BlockType::installBlockTypeFromPackage('mautictracker', $pkg);
         BlockType::installBlockTypeFromPackage('mauticform', $pkg);
+        BlockType::installBlockTypeFromPackage('mauticcontent', $pkg);
 	}
 }
