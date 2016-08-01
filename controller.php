@@ -26,5 +26,6 @@ class Controller extends Package {
 		BlockType::installBlockTypeFromPackage('mautictracker', $pkg);
         BlockType::installBlockTypeFromPackage('mauticform', $pkg);
         BlockType::installBlockTypeFromPackage('mauticcontent', $pkg);
+        BlockType::installBlockTypeFromPackage('mauticvideo', $pkg);
 	}
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<schema version="0.3">
+	<table name="mauticVideos">
+		<field name="bID" type="I">
+			<key />
+			<unsigned />
+		</field>
+        <field name="mautic_base_url" type="C" size="255"></field>
+		<field name="mautic_gate_time" type="I" size="255"></field>
+		<field name="mautic_form_id" type="I" size="255"></field>
+		<field name="mautic_width" type="I" size="255"></field>
+		<field name="mautic_height" type="I" size="255"></field>
+		<field name="mautic_src" type="C" size="255"></field>
+	</table>
+</schema>
