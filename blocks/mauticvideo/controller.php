@@ -1,6 +1,6 @@
 <?php
 
-namespace Concrete\Package\Mautic\Block\Mauticcontent;
+namespace Concrete\Package\Mautic\Block\Mauticvideo;
 use \Concrete\Core\Block\BlockController;
 use UserInfo;
 use Loader;
