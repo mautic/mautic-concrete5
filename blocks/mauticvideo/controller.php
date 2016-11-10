@@ -14,6 +14,10 @@ class Controller extends BlockController
     protected $btTable = 'mauticVideos';
     protected $btInterfaceWidth = "600";
     protected $btInterfaceHeight = "400";
+    protected $btCacheBlockRecord = true;
+    protected $btCacheBlockOutput = true;
+    protected $btCacheBlockOutputOnPost = true;
+    protected $btCacheBlockOutputForRegisteredUsers = true;
 
     public $mautic_base_url = "";
     public $mautic_gate_time = 15;
