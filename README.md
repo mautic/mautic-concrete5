@@ -3,7 +3,7 @@ Mautic - Concrete5 Add-on
 
 This [Concrete5](http://www.concrete5.org/) Add-on lets you add the [Mautic](http://mautic.org) tracking pixel to your Concrete5 website and embed Mautic forms in the content.
 
-This add-on was tested on Concrete5 v5.7.3.1. Older versions might not be compatible.
+This is for Concrete5 8.x. 
 
 ## Installation
 
@@ -11,18 +11,24 @@ This add-on was tested on Concrete5 v5.7.3.1. Older versions might not be compat
 2. Unzip the package files to `/packages/mautic/` of your Concrete5 instance.
 3. Log in to your Concrete5 instance as administrator, open configuration menu (top right corner) and go to **Extend Concrete5** / **Add functionality**.
 4. You should see Mautic Add-on listed there. Click the **Install** button.
+5. Go to the Dashboard -> System & Settings -> Mautic -> Settings to configure your Mautic URL.
 
-Now, if you go to **Add Content to The Page** (the plus icon in the top bar), you should see Mautc Form and Mautic Tracker blocks.
+Now, if you go to **Add Content to The Page** (the plus icon in the top bar), you should see Mautic Form, Mautic Dynamic Content and Mautic Video blocks.
 
-### Mautic Tracking Pixel
+### Mautic tracking javascript
 
-To make the tracker work, insert one Mautic Tracker block to the footer of your page. 
+Mautic's tracking code will be automatically inserted into each page. 
+ 
+(Note: the code enabling this was adapted from [https://github.com/concrete5cojp/addon_mautic_tracker](https://github.com/concrete5cojp/addon_mautic_tracker)).
 
-Tracking pixel works right after you configure the Mautic Base URL in the add-on. That means it will insert 1 px gif image loaded from your Mautic instance. You can check HTML source code (CTRL + U) of your Concrete5 website to make sure the plugin works. You should be able to find something like this:
+You can set custom parameter from your package or custom code using:
 
-`<img src="http://yourmautic.com/mtracking.gif" />`
-
-There will be probably longer URL query string at the end of the tracking image URL. It is encoded additional data about the page (title, url, referrer).
+```php
+$app = Application::getFacadeApplication();
+$tracker = $app->make(Concrete\Package\Mautic\Asset\Tracker::class);
+$tracker->setParam('email', 'my@email.com');
+$tracker->setParam('firstname', 'John');
+```
 
 ### Form embed
 
