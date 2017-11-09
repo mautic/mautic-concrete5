@@ -3,7 +3,7 @@ Mautic - Concrete5 Add-on
 
 This [Concrete5](http://www.concrete5.org/) Add-on lets you add the [Mautic](http://mautic.org) tracking pixel to your Concrete5 website and embed Mautic forms in the content.
 
-This is for Concrete5 8.x. 
+#This is for Concrete5 8.x. To use with 5.x, use [https://github.com/mautic/mautic-concrete5/tree/5.x](https://github.com/mautic/mautic-concrete5/tree/5.x).  
 
 ## Installation
 
