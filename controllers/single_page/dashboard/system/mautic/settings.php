@@ -25,7 +25,7 @@ class Settings extends DashboardPageController
         $url = $this->post('mautic_base_url');
         if (!$url) {
             $this->error->add(t('Mautic URL is required.'));
-        } elseif (strpos($url, 'http://') === false) {
+        } elseif (strpos($url, 'http') === 0) {
             $this->error->add(t('Mautic URL is invalid.'));
         }
 
