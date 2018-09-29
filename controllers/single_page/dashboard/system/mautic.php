@@ -7,6 +7,6 @@ class Mautic extends DashboardPageController
 {
     public function view()
     {
-        $this->redirect('/dashboard/mautic/settings');
+        $this->redirect('/dashboard/system/mautic/settings');
     }
 }
