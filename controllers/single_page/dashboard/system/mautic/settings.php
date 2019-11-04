@@ -1,8 +1,8 @@
 <?php
 namespace Concrete\Package\Mautic\Controller\SinglePage\Dashboard\System\Mautic;
 
+use Concrete\Core\Package\Package;
 use \Concrete\Core\Page\Controller\DashboardPageController;
-use Concrete\Core\Support\Facade\Package;
 
 class Settings extends DashboardPageController
 {
